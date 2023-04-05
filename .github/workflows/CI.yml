@@ -46,14 +46,7 @@ jobs:
         with:
           name: yacd-crx
           path: "*.crx"
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: auto
-          prerelease: false
-          title: "Automatic Build"
-          files: |
-            *.crx
+
   Yacd-Meta:
     runs-on: ubuntu-latest
     steps:
@@ -91,6 +84,12 @@ jobs:
         with:
           name: yacd-meta-crx
           path: "*.crx"
+
+  Publish:
+    needs: [Yacd, Yacd-Meta]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -99,3 +98,4 @@ jobs:
           title: "Automatic Build"
           files: |
             *.crx
+            *.zip
