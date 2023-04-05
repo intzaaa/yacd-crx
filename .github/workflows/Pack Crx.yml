@@ -1,7 +1,9 @@
+# @format
+
 name: CI
-env: 
+env:
   pem: ${{ secrets.pem }}
-on: 
+on:
   workflow_dispatch:
   push:
   schedule:
@@ -48,6 +50,7 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: auto
+          prerelease: false
           title: "Automatic Build"
           files: |
             *.crx
