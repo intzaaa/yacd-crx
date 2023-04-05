@@ -30,7 +30,7 @@ jobs:
           mv ./yacd/* ./build
       - run: |
           echo "$pem" > yacd.pem
-          chrome.exe --pack-extension="./build" --pack-extension-key="yacd.pem"
+          chrome --pack-extension="./build" --pack-extension-key="yacd.pem"
       - uses: actions/upload-artifact@v3.1.2
         with:
           name: build
