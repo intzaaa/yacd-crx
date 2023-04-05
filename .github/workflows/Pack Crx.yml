@@ -3,6 +3,9 @@ env:
   pem: ${{ secrets.pem }}
 on: 
   workflow_dispatch:
+  push:
+  schedule:
+    - cron: "0 0 * * *"
 jobs:
   Pack:
     runs-on: ubuntu-latest
@@ -32,11 +35,19 @@ jobs:
       - run: |
           echo "$pem" > yacd.pem
           chrome --pack-extension=build --pack-extension-key=yacd.pem
+          mv build.crx yacd.crx
       - uses: actions/upload-artifact@v3.1.2
         with:
           name: build
           path: build
       - uses: actions/upload-artifact@v3.1.2
         with:
-          name: build
+          name: crx
           path: "*.crx"
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: auto
+          title: "Automatic Build"
+          files: |
+            *.crx
