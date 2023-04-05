@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Yacd",
+  "description": "Yet another clash dashboard...",
+  "version": "1.0",
+  "action": {
+    "default_icon": {
+      "48": "48.png",
+      "128": "128.png",
+      "512": "512.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "48": "48.png",
+    "128": "128.png",
+    "512": "512.png"
+  },
+  "options_page": "index.html"
+}
