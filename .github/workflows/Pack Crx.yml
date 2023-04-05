@@ -28,6 +28,7 @@ jobs:
           rm -rf ./yacd/.git
           mv ./crx/* ./build
           mv ./yacd/* ./build
+          rm ./build/_*
       - run: |
           echo "$pem" > yacd.pem
           chrome --pack-extension="./build" --pack-extension-key="yacd.pem"
